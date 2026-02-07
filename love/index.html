@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
+  <title>Do you love me?</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ffe6e9;
+      font-family: "Quicksand", sans-serif;
+    }
+
+    .container {
+      text-align: center;
+      position: relative;
+    }
+
+    video {
+      width: 300px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .button-container {
+      position: relative;
+      height: 120px;
+    }
+
+    .btn {
+      position: absolute;
+      padding: 10px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      background: #ff6b81;
+      color: white;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #ff8fa3;
+    }
+
+    .yes-btn {
+      left: 30%;
+    }
+
+    .no-btn {
+      left: 55%;
+    }
+
+    .result {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- FIRST VIEW -->
+  <div id="questionBox">
+    <video src="videos/Reply me love.mp4" autoplay muted loop></video>
+    <h2 class="question">Do you love me?</h2>
+
+    <div class="button-container">
+      <button class="yes-btn btn" id="yesBtn">Yes</button>
+      <button class="no-btn btn" id="noBtn">No</button>
+    </div>
+  </div>
+
+  <!-- RESULT VIEW -->
+  <div id="resultBox" class="result">
+    <video src="videos/Love me.mp4" autoplay loop></video>
+    <h2 class="question">LOVE YOU MY DEAR WIFE 😍</h2>
+  </div>
+
+</div>
+
+<script>
+  const yesBtn = document.getElementById("yesBtn");
+  const noBtn = document.getElementById("noBtn");
+  const questionBox = document.getElementById("questionBox");
+  const resultBox = document.getElementById("resultBox");
+
+  // NO button runs away
+  noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * 200;
+    const y = Math.random() * 100;
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  });
+
+  // YES button action
+  yesBtn.addEventListener("click", () => {
+    questionBox.style.display = "none";
+    resultBox.style.display = "block";
+  });
+</script>
+
+</body>
+</html>
