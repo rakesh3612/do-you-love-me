@@ -1,0 +1,367 @@
+//Week2 ..sample bootstrap
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 2 - Bootstrap</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        footer {
+            color: white;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ✅ Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+    <div class="container-fluid">
+
+        <a class="navbar-brand" href="#">
+            <img src="DORA.JPG" alt="dora" width="40" height="40">
+        </a>
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+            <li class="nav-item">
+                <a class="nav-link active" href="#">HOME</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+            </li>
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                    Episodes
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Episode 1</a></li>
+                    <li><a class="dropdown-item" href="#">Episode 2</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- Search -->
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search website">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+
+    </div>
+</nav>
+
+<!-- ✅ Body Section -->
+<div class="container mt-5">
+    <div class="row">
+
+        <div class="col-sm-4">
+            <h3>Welcome to CMRIT</h3>
+        </div>
+
+        <div class="col-sm-8">
+            <h2>Article Title</h2>
+            <h5>Created on 06 March 2024</h5>
+
+            <p>
+                Doraemon is a robotic cat from the 22nd century who travels back in time to help Nobita.
+                His official birth date is 3 September 2112, and his residence is Kawasaki, Kanagawa.
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<!-- ✅ Footer -->
+<footer class="bg-success text-center">
+    <p>Copyright © CMRIT-2024</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+              __________________________________________________________________________
+// week4 slider
+<!DOCTYPE html>
+<html>
+<head>
+<title>Slider</title>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<style>
+body{
+    background:black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.slider{text-align:center;padding:40px 0;}
+
+img{width:400px;height:250px;display:none;}
+.active{display:block;}
+
+.controls{margin-top:20px;}
+button{margin:5px;}
+</style>
+</head>
+
+<body>
+
+<div class="slider">
+    <img src="Images/4.jpg" class="active">
+    <img src="Images/4.jpg">
+    <img src="Images/1.jpg">
+    <img src="Images/2.jpg">
+    <img src="Images/3.jpg">
+
+    <div class="controls">
+        <button onclick="slide('prev')">Previous</button>
+        <button onclick="auto(this)">Start</button>
+        <button onclick="slide('next')">Next</button>
+    </div>
+</div>
+
+<script>
+var run=false, t;
+
+function slide(d){
+    var c=$(".active");
+    var n=(d=="next")? c.next("img"):c.prev("img");
+
+    if(!n.length) n=(d=="next")? $("img:first"):$("img:last");
+
+    c.removeClass("active");
+    n.addClass("active");
+}
+
+function auto(b){
+    if(!run){
+        t=setInterval(()=>slide("next"),1000);
+        run=true; b.innerText="Stop";
+    }else{
+        clearInterval(t);
+        run=false; b.innerText="Start";
+    }
+}
+</script>
+
+</body>
+</html>
+  __________________________________________________________________________
+  /////week 8
+Week 8 - Program execution 
+Step 1: open a new folder called week 8 and open cmd in it  
+Step 2: type ‘ng new spa’ 
+Step 3: css - > yes -> enter -> enter 
+Step 4: type ‘cd spa’ 
+Step 5: type ‘npm install -g @angular/cli’ 
+Step 6: type ‘code .’ 
+Step 7: type ‘ng serve’  
+Step 8: yes 
+Step 9: copy and paste the localhost address in a browser - spa opens 
+Step 10: ctrl c - type the following three commands one by one - ng g c header, ng g c home, ng 
+g c profile , type ‘code .’ 
+All the folders are created now 
+Step 10: open app.html, delete all the content inside and store the following code in it 
+<app-header></app-header> 
+<router-outlet></router-outlet> 
+Step 11: Open ‘index.html’ and put the following code into it 
+<!doctype html> 
+<html lang="en"> 
+<head> 
+<meta charset="utf-8"> 
+<title>Week 8</title> 
+<base href="/"> 
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<link rel="icon" type="image/x-icon" href="favicon.ico"> 
+<link rel="stylesheet" 
+href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" 
+crossorigin="anonymous"> 
+</head> 
+<body> 
+<app-root></app-root> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" 
+crossorigin="anonymous" ></script> 
+</body> 
+</html> 
+Step 12: Open ‘header.html’ and paste the following code into it 
+<nav class="navbar navbar-expand-lg bg-body-tertiary"> 
+<div class="container-fluid"> 
+<a class="navbar-brand" [routerLink]="['/']">SPA-Demo</a> 
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
+aria-label="Toggle navigation"> 
+<span class="navbar-toggler-icon"></span> 
+</button> 
+<div class="collapse navbar-collapse" id="navbarNav"> 
+<ul class="navbar-nav"> 
+<li class="nav-item"> 
+<a class="nav-link active" [routerLinkActiveOptions]="{exact:true}" 
+routerLinkActive="active" aria-current="page" [routerLink]="['/']">Home</a> 
+</li> 
+<li class="nav-item"> 
+<a class="nav-link" [routerLinkActiveOptions]="{exact:true}" 
+routerLinkActive="active" [routerLink]="['/profile']">Profile</a> 
+</li> 
+</ul> 
+</div> 
+</div> 
+</nav> 
+Step 13: Open ‘home.html’ and paste the following code into it 
+<section class ="container mt-5 text-center"> 
+<h1> welcome to SPA Demo Page</h1> 
+</section> 
+Step 14: Open ‘profile.html’ and paste the following code into it 
+<section class ="container mt-5 text-center"> 
+<h1> welcome to MyProfile Page</h1> 
+</section> 
+Step 15: Open ‘app.ts’ and paste the following code into it 
+import { Component, signal } from '@angular/core'; 
+import { Header } from "./header/header"; 
+import { RouterOutlet,RouterModule } from '@angular/router'; 
+@Component({ 
+selector: 'app-root', 
+imports: [Header, RouterOutlet,RouterModule], 
+templateUrl: './app.html', 
+styleUrl: './app.css' 
+}) 
+export class App { 
+protected readonly title = signal('spa'); 
+} 
+Step 16: Open ‘header.ts’ and paste the following code into it 
+import { Component } from '@angular/core'; 
+import { RouterLink, RouterLinkActive } from "@angular/router"; 
+@Component({ 
+selector: 'app-header', 
+imports: [RouterLink, RouterLinkActive], 
+templateUrl: './header.html', 
+styleUrl: './header.css', 
+}) 
+export class Header { 
+} 
+Step 17: Open ‘app.routes.ts’ and paste the following code into it 
+import { Routes } from '@angular/router'; 
+import { Home } from './home/home'; 
+import { Profile } from './profile/profile'; 
+export const routes: Routes = [ 
+{ 
+path:'', 
+component:Home, 
+title:"Home" 
+}, 
+{ 
+}] 
+path:'profile', 
+component:Profile, 
+title:"Profile"
+  }]
+  -------------------------------------------------------------------------------
+////week10 angular
+Steps to install REACTJS 
+npm install -g npx 
+npm install -g create-react-app 
+npx create-react-app my-react-app 
+cd my-react-app 
+code . 
+npm start 
+npm install react-router-dom 
+npm install react-router-dom bootstrap react-bootstrap 
+Create 4 new files inside src called layout.js, contactus.js, profile.js, home.js and add the 
+following programs inside it. 
+layout.js 
+import { Container, Nav, Navbar } from "react-bootstrap"; 
+import { Outlet, Link } from "react-router-dom"; 
+const Layout = () => { 
+return ( 
+<> 
+<Navbar bg="primary" data-bs-theme="dark"> 
+<Container> 
+<Navbar.Brand href="/">React SPA</Navbar.Brand> 
+<Nav className="me-auto"> 
+<Nav.Link as={Link} to="/">Home</Nav.Link> 
+<Nav.Link as={Link} to="/profile">Profile</Nav.Link> 
+<Nav.Link as={Link} to="/contact">Contact Us</Nav.Link> 
+</Nav> 
+</Container> 
+</Navbar> 
+<Container className="mt-4"> 
+<Outlet /> 
+</Container> 
+</> 
+); 
+}; 
+export default Layout; 
+contactus.js 
+const ContactUs = () => { 
+return<h1>CMRIT, Kandlakoya Village, Medchal, Hyderabad</h1>; 
+}; 
+ 
+export default ContactUs; 
+ 
+profile.js 
+ 
+const Home = () => { 
+return<h1>Welcome to CMRIT Profile Page</h1>; 
+}; 
+ 
+export default Home; 
+ 
+home.js 
+ 
+const Home = () => { 
+return<h1>Welcome to CMRIT Home Page</h1>; 
+}; 
+ 
+export default Home; 
+—------
+ 
+Open app.js and remove all the existing code inside that and paste the following. 
+ 
+app.js 
+ 
+import React from "react"; 
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom"; 
+import Home from"./home"; 
+import Profile from"./profile"; 
+import ContactUs from"./contactus"; 
+ 
+function App() { 
+  return ( 
+    <Router> 
+      <div> 
+        <nav> 
+          <ul> 
+            <li><Link to="/">Home</Link></li> 
+            <li><Link to="/profile">Profile</Link></li> 
+            <li><Link to="/contactus">Contact Us</Link></li> 
+          </ul> 
+        </nav> 
+ 
+        <Routes> 
+          <Route path="/"element={<Home/>}/> 
+          <Route path="/profile"element={<Profile/>}/> 
+          <Route path="/contactus"element={<ContactUs/>}/> 
+        </Routes> 
+      </div> 
+    </Router> 
+  ); 
+} 
+ 
+export default App;
