@@ -1,1 +1,354 @@
+3
+index
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+</head>
+<body style="text-align:center; margin-top:100px;">
+
+    <h2>Welcome</h2>
+
+    <a href="login.html">Login</a><br><br>
+    <a href="register.html">Register</a>
+
+</body>
+</html>
+
+
+register
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <script src="script.js"></script>
+</head>
+
+<body style="text-align:center; font-family: Arial;">
+
+<h2>Registration Form</h2>
+
+<form onsubmit="return validateRegister()">
+
+<table border="1" align="center" cellpadding="10">
+
+    <tr>
+        <td>First Name</td>
+        <td><input type="text" id="fname" required></td>
+    </tr>
+
+    <tr>
+        <td>Last Name</td>
+        <td><input type="text" id="lname" required></td>
+    </tr>
+
+    <tr>
+        <td>Phone</td>
+        <td><input type="text" id="phone" required></td>
+    </tr>
+
+    <tr>
+        <td>Email</td>
+        <td><input type="email" id="email" required></td>
+    </tr>
+
+    <tr>
+        <td>Password</td>
+        <td><input type="password" id="password" required></td>
+    </tr>
+
+    <tr>
+        <td>Gender</td>
+        <td>
+            <input type="radio" name="gender" value="Male"> Male
+            <input type="radio" name="gender" value="Female"> Female
+        </td>
+    </tr>
+
+    <tr>
+        <td>Date of Birth</td>
+        <td><input type="date" id="dob" required></td>
+    </tr>
+
+    <tr>
+        <td>Age</td>
+        <td><input type="number" id="age" required></td>
+    </tr>
+
+    <tr>
+        <td colspan="2" align="center">
+            <input type="submit" value="Register">
+        </td>
+    </tr>
+
+</table>
+
+</form>
+
+</body>
+</html>
+
+
+login
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <script src="script.js"></script>
+</head>
+<body style="text-align:center;">
+
+<h2>Login Form</h2>
+
+<form onsubmit="return validateLogin()">
+
+    Email: <input type="text" id="loginEmail" required><br><br>
+    Password: <input type="password" id="loginPassword" required><br><br>
+
+    <input type="submit" value="Login">
+
+</form>
+
+<p>Not registered? <a href="register.html">Register</a></p>
+
+</body>
+</html>
+
+welcome 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome</title>
+</head>
+<body style="text-align:center; margin-top:100px;">
+
+    <h1>Welcometo CMRIT></h1>
+
+</body>
+</html>
+
+script
+// ================= REGISTER =================
+function validateRegister() {
+
+    let fname = document.getElementById("fname").value;
+    let lname = document.getElementById("lname").value;
+    let phone = document.getElementById("phone").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let dob = document.getElementById("dob").value;
+    let age = document.getElementById("age").value;
+
+    let gender = document.querySelector('input[name="gender"]:checked');
+
+    // Name validation
+    if (!/^[A-Za-z]+$/.test(fname)) {
+        alert("Invalid First Name");
+        return false;
+    }
+
+    if (!/^[A-Za-z]+$/.test(lname)) {
+        alert("Invalid Last Name");
+        return false;
+    }
+
+    // Phone validation
+    if (phone.length != 10 || isNaN(phone)) {
+        alert("Phone must be 10 digits");
+        return false;
+    }
+
+    // Password validation
+    if (password.length > 8) {
+        alert("Password should not exceed 8 characters");
+        return false;
+    }
+
+    // Gender validation
+    if (!gender) {
+        alert("Select Gender");
+        return false;
+    }
+
+    // DOB validation
+    if (dob === "") {
+        alert("Select Date of Birth");
+        return false;
+    }
+
+    // Age validation
+    if (age <= 0) {
+        alert("Invalid Age");
+        return false;
+    }
+
+    // Store data
+    localStorage.setItem("email", email);
+    localStorage.setItem("password", password);
+    localStorage.setItem("fname", fname);
+
+    alert("Registration Successful");
+
+    // redirect to login page
+    window.location = "login.html";
+    return false;
+}
+
+
+// ================= LOGIN =================
+function validateLogin() {
+
+    let email = document.getElementById("loginEmail").value;
+    let password = document.getElementById("loginPassword").value;
+
+    let storedEmail = localStorage.getItem("email");
+    let storedPassword = localStorage.getItem("password");
+
+    if (email === storedEmail && password === storedPassword) {
+
+        alert("Login Successful");
+
+        // redirect to welcome page
+        window.location = "welcome.html";
+        return false;
+
+    } else {
+        alert("Invalid Credentials");
+        return false;
+    }
+}
+
+__________________________________________________________________________________________
+5
+welcome
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome</title>
+</head>
+<body style="text-align:center; margin-top:100px;">
+
+    <h1 id="msg"></h1>
+
+    <br><br>
+    <a href="/logout">Logout</a>
+
+    <script>
+        let name = localStorage.getItem("fname");
+        document.getElementById("msg").innerText = "Welcome " + name;
+    </script>
+
+</body>
+</html>
+
+server.js
+const express = require("express");
+const path = require("path");
+
+const app = express();
+
+// middleware
+app.use(express.static("public"));
+
+// routes
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/index.html"));
+});
+
+app.get("/login", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/login.html"));
+});
+
+app.get("/register", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/register.html"));
+});
+
+app.get("/welcome", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/welcome.html"));
+});
+
+// start server
+app.listen(3000, () => {
+    console.log("Server running at http://localhost:3000");
+});
+app.get("/logout", (req, res) => {
+    res.redirect("/");
+});
+_________________________________________________________________________________________________
+
+
+9
+
+profile.html
+
+const express = require("express");
+const path = require("path");
+
+const app = express();
+
+// middleware
+app.use(express.static("public"));
+
+// routes
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/index.html"));
+});
+
+app.get("/login", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/login.html"));
+});
+
+app.get("/register", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/register.html"));
+});
+
+app.get("/welcome", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/welcome.html"));
+});
+
+// start server
+app.listen(3000, () => {
+    console.log("Server running at http://localhost:3000");
+});
+app.get("/logout", (req, res) => {
+    res.redirect("/");
+});
+
+
+profile.ts
+const express = require("express");
+const path = require("path");
+
+const app = express();
+
+// middleware
+app.use(express.static("public"));
+
+// routes
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/index.html"));
+});
+
+app.get("/login", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/login.html"));
+});
+
+app.get("/register", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/register.html"));
+});
+
+app.get("/welcome", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/welcome.html"));
+});
+
+// start server
+app.listen(3000, () => {
+    console.log("Server running at http://localhost:3000");
+});
+app.get("/logout", (req, res) => {
+    res.redirect("/");
+});
+______________________________________________________________________________________________
+
 
